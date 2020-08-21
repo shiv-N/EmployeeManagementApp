@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "5VBwEoy6Guk4waSLLyNyg+qSpOzq/wvBRCgSIp0N9XGhHdz+90k0p5Y4PIdB2HUCH3Dq/NZv2X5By3obiEfm3Q==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\SAURABH\\source\\repos\\EmployeeManagementApp\\RepositoryLayer\\RepositoryLayer.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\SAURABH\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.2\\microsoft.aspnetcore.app.ref.3.1.2.nupkg.sha512"
+  ],
+  "logs": []
+}
