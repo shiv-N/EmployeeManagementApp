@@ -2,14 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BusinessLayer.Interfaces;
+using BusinessLayer.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using RepositoryLayer.DBContextFiles;
+using RepositoryLayer.Interfaces;
+using RepositoryLayer.Services;
 
 namespace EmployeeManagementApp
 {
@@ -25,6 +31,13 @@ namespace EmployeeManagementApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<IAdminBL, AdminBL>();
+            services.AddTransient<IAdminRL, AdminRL>();
+
+            services.AddTransient<IEmployeeBL, EmployeeBL>();
+            services.AddTransient<IEmployeeRL, EmployeeRL>();
+
+            services.AddDbContext<EmployeeContext>(opts => opts.UseSqlServer(Configuration["ConnectionString:EmployeeDB"]));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
