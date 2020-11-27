@@ -1,4 +1,5 @@
-﻿using CommaonLayer.RequestModel;
+﻿using CommaonLayer.ContextModel;
+using CommaonLayer.RequestModel;
 using CommaonLayer.ResponseModel;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,6 @@ namespace BusinessLayer.Interfaces
 
         List<EmployeeModel> GetAllEmployee();
 
-        bool AdminLogin(AdminLogin login);
+        EmployeeModel AdminLogin(AdminLogin login);
     }
 }

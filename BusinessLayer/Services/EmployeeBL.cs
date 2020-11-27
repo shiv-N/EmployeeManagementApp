@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Interfaces;
+using CommaonLayer.ContextModel;
 using CommaonLayer.RequestModel;
 using RepositoryLayer.Interfaces;
 using System;
@@ -16,6 +17,42 @@ namespace BusinessLayer.Services
             this.employeeRL = employeeRL;
         }
 
+        public bool Delete(int EmpId)
+        {
+            try
+            {
+                return this.employeeRL.Delete(EmpId);
+            }
+            catch(Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public bool EditEmployee(UpdateModel updatedEmployee, int EmpId)
+        {
+            try
+            {
+                return this.employeeRL.EditEmployee(updatedEmployee, EmpId);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public List<CompanyEmployee> GetAllEmployee()
+        {
+            try
+            {
+                return this.employeeRL.GetAllEmployee();
+            }
+            catch(Exception e)
+            {
+                throw e;
+            }
+        }
+
         public bool RegisterEmployee(RegisterModel employee)
         {
             try
@@ -27,5 +64,6 @@ namespace BusinessLayer.Services
                 throw e;
             }
         }
+
     }
 }

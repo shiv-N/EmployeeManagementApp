@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using BusinessLayer.Interfaces;
+using CommaonLayer.ContextModel;
 using CommaonLayer.RequestModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -50,6 +51,68 @@ namespace EmployeeManagementApp.Controllers
                     return this.BadRequest(new { success = false, Message = e.Message });
                 }
 
+            }
+        }
+
+        [HttpDelete("{EmpId}")]
+        public IActionResult Delete(int EmpId)
+        {
+            try
+            {
+                if (this.employeeBL.Delete(EmpId))
+                {
+                    return this.Ok(new { success = true, Message = "Employee record Deleted successfully" });
+                }
+                else
+                {
+                    return this.NotFound(new { success = false, Message = "Employee record Deleted unsuccessfully" });
+                }
+            }
+            catch (Exception e)
+            {
+                return this.BadRequest(new { success = false, Message = e.Message });
+            }
+        }
+
+        [HttpPut("{EmpId}")]
+        public IActionResult EditEmployee(int EmpId, UpdateModel employee)
+        {
+            try
+            {
+                if (this.employeeBL.EditEmployee(employee, EmpId))
+                {
+                    return this.Ok(new { success = true, Message = "Employee record updated successfully" });
+                }
+                else
+                {
+                    return StatusCode(StatusCodes.Status500InternalServerError,
+                        new { success = false, Message = "Employee record is not updated " });
+                }
+            }
+            catch (Exception e)
+            {
+                return this.BadRequest(new { success = false, Message = e.Message });
+            }
+        }
+
+        [HttpGet]
+        public IActionResult GetAllEmployee()
+        {
+            try
+            {
+                List<CompanyEmployee> empList =  this.employeeBL.GetAllEmployee();
+                if(empList != null)
+                {
+                    return this.Ok(new { success = true, Message = "get Employee records successfully", data = empList });
+                }
+                else
+                {
+                   return this.NotFound(new { success = false, Message = "get Employee records unsuccessfully" });
+                }
+            }
+            catch (Exception e)
+            {
+                return this.BadRequest(new { success = false, Message = e.Message });
             }
         }
     }

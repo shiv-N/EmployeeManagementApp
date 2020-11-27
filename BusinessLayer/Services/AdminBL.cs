@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Interfaces;
+using CommaonLayer.ContextModel;
 using CommaonLayer.RequestModel;
 using CommaonLayer.ResponseModel;
 using RepositoryLayer.Interfaces;
@@ -17,7 +18,7 @@ namespace BusinessLayer.Services
             this.adminRL = adminRL;
         }
 
-        public bool AdminLogin(AdminLogin login)
+        public EmployeeModel AdminLogin(AdminLogin login)
         {
             try
             {

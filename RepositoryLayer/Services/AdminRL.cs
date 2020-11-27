@@ -20,7 +20,30 @@ namespace RepositoryLayer.Services
             this.context = context;
         }
 
-       
+        public EmployeeModel AdminLogin(AdminLogin login)
+        {
+            try
+            {
+                return this.context.Employees.Where(x =>
+                                                 x.Email == login.Email && x.Password == login.Password
+                                                 && x.Role == "Admin")
+                                    .Select(o => new EmployeeModel
+                                    {
+                                        EmployeeId = o.EmployeeId,
+                                        Email = o.Email,
+                                        FirstName = o.FirstName,
+                                        LastName = o.LastName,
+                                        PhoneNumber = o.PhoneNumber,
+                                        CreatedDateTime = o.CreatedDateTime,
+                                        Role = o.Role,
+                                        ModifiedDateTime = o.ModifiedDateTime
+                                    }).FirstOrDefault();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
 
         public List<EmployeeModel> GetAllEmployee()
         {
